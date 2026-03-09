@@ -1,6 +1,6 @@
 import React from "react";
 
-const CityBar = ({ cityName, onToggleSearch }) => {
+const CityBar = ({ cityName, showSearch, onToggleSearch }) => {
   return (
     <div className="flex items-center gap-1.5">
       <img src="/Frame 3.png" alt="location" className="h-6 w-6 object-contain" />
@@ -10,6 +10,8 @@ const CityBar = ({ cityName, onToggleSearch }) => {
         className="inline-flex h-10 w-10 items-center justify-center rounded-full md:h-12 md:w-12"
         onClick={onToggleSearch}
         aria-label="Toggle search"
+        aria-expanded={showSearch}
+        aria-controls="weather-search-panel"
       >
         <img src="/Frame.png" alt="arrow" className="h-5 w-5 object-contain md:h-6 md:w-6" />
       </button>

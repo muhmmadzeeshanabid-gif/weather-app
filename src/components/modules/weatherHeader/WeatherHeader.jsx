@@ -17,7 +17,7 @@ const WeatherHeader = ({
 }) => {
   return (
     <div className="relative min-h-[88px] md:min-h-[86px]">
-      <CityBar cityName={cityName} onToggleSearch={onToggleSearch} />
+      <CityBar cityName={cityName} showSearch={showSearch} onToggleSearch={onToggleSearch} />
 
       <SearchPanel
         showSearch={showSearch}

@@ -11,16 +11,16 @@ const MoonPhaseStats = ({
   weatherIcon,
 }) => {
   return (
-    <div className="relative z-10 mt-3 flex flex-1 items-center justify-between gap-4">
+    <div className="relative z-10 mt-2 flex flex-1 items-start justify-between gap-3">
       <div className="min-w-0 flex-1">
-        <p className="text-[58px] font-medium leading-[0.9] md:text-[64px]">
+        <p className="text-[55px] font-medium leading-[0.9] md:text-[60px]">
           {bestSlot.temp}
           {"\u00B0"}C
         </p>
-        <p className="mt-2 text-[24px] font-medium leading-none text-slate-50">{condition}</p>
-        <p className="mt-3 text-[14px] leading-none text-slate-100/78">{trendLabel}</p>
+        <p className="mt-1.5 text-[22px] font-medium leading-none text-slate-50">{condition}</p>
+        <p className="mt-2 text-[14px] leading-none text-slate-100/78">{trendLabel}</p>
 
-        <div className="mt-4 grid grid-cols-2 gap-2">
+        <div className="mt-3 grid grid-cols-2 gap-1.5">
           <StatChip>Best {bestSlot.time}</StatChip>
           <StatChip>
             High {warmestSlot.temp}
@@ -30,7 +30,7 @@ const MoonPhaseStats = ({
             Low {coolestSlot.temp}
             {"\u00B0"}
           </StatChip>
-          <StatChip>Wind {bestSlot.wind}</StatChip>
+          <StatChip className="px-2 text-[9px]">Wind {bestSlot.wind}</StatChip>
         </div>
       </div>
 

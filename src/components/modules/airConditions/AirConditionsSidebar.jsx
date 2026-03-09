@@ -7,11 +7,9 @@ import useSidebarDays from "./useSidebarDays";
 
 const AirConditionsSidebar = ({ data }) => {
   const card = { ...fallbackAirData, ...(data || {}) };
-  const baseIcons = useMemo(() => {
-    return card.days?.length
-      ? card.days.map((item) => item.icon)
-      : fallbackAirData.days.map((item) => item.icon);
-  }, [card.days]);
+  const availableDayMetrics = useMemo(() => {
+    return card.dayMetrics?.length ? card.dayMetrics : fallbackAirData.dayMetrics;
+  }, [card.dayMetrics]);
 
   const [currentTime, setCurrentTime] = useState(() => new Date());
   const {
@@ -22,7 +20,7 @@ const AirConditionsSidebar = ({ data }) => {
     canGoNext,
     goPrev,
     goNext,
-  } = useSidebarDays(baseIcons);
+  } = useSidebarDays(availableDayMetrics);
 
   useEffect(() => {
     const interval = setInterval(() => setCurrentTime(new Date()), 30000);
@@ -34,6 +32,8 @@ const AirConditionsSidebar = ({ data }) => {
     minute: "2-digit",
     hour12: true,
   }).format(currentTime);
+
+  const selectedMetrics = availableDayMetrics[selectedDayIndex] || availableDayMetrics[0] || card;
 
   return (
     <aside className="relative mt-4 h-[530px] w-full overflow-hidden rounded-[34px] border border-white/20 bg-sky-500/35 px-6 py-5 backdrop-blur-sm md:mt-[10px] md:w-[300px]">
@@ -54,7 +54,7 @@ const AirConditionsSidebar = ({ data }) => {
           AIR CONDITIONS
         </h4>
 
-        <ConditionMetrics data={card} />
+        <ConditionMetrics data={selectedMetrics} />
       </div>
 
       <img

@@ -1,25 +1,25 @@
-import { useMemo, useState } from "react";
-import { TOTAL_DAYS, VISIBLE_DAY_COUNT } from "./constants";
+import { useEffect, useMemo, useState } from "react";
+import { VISIBLE_DAY_COUNT } from "./constants";
 
-function getWeekdayLabel(date) {
-  return new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date).toUpperCase();
-}
-
-export default function useSidebarDays(baseIcons) {
+export default function useSidebarDays(days) {
   const [startIndex, setStartIndex] = useState(0);
   const [selectedDayIndex, setSelectedDayIndex] = useState(0);
 
-  const allDays = useMemo(() => {
-    return Array.from({ length: TOTAL_DAYS }, (_, index) => {
-      const date = new Date();
-      date.setDate(date.getDate() + index);
-      return {
-        label: getWeekdayLabel(date),
-        icon: baseIcons[index % baseIcons.length],
-        index,
-      };
-    });
-  }, [baseIcons]);
+  const allDays = useMemo(
+    () => (days || []).map((day, index) => ({ ...day, index })),
+    [days]
+  );
+
+  useEffect(() => {
+    if (!allDays.length) {
+      setStartIndex(0);
+      setSelectedDayIndex(0);
+      return;
+    }
+
+    setSelectedDayIndex((prev) => Math.min(prev, allDays.length - 1));
+    setStartIndex((prev) => Math.min(prev, Math.max(allDays.length - VISIBLE_DAY_COUNT, 0)));
+  }, [allDays]);
 
   const visibleDays = allDays.slice(startIndex, startIndex + VISIBLE_DAY_COUNT);
   const canGoPrev = startIndex > 0;

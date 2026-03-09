@@ -11,6 +11,20 @@ body,
   overflow-y: auto;
 }
 
+.app-zoom-shell {
+  height: 100%;
+  zoom: 0.81;
+}
+
+@supports not (zoom: 0.81) {
+  .app-zoom-shell {
+    width: calc(100% / 0.81);
+    min-height: calc(100dvh / 0.81);
+    transform: scale(0.81);
+    transform-origin: top left;
+  }
+}
+
 .float-input {
   animation: floatIn 2.5s ease-in-out infinite;
 }

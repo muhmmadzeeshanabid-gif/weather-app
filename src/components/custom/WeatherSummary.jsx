@@ -31,7 +31,7 @@ const WeatherSummary = ({
         </span>
       </p>
 
-      <p className="mt-1 text-sm text-slate-100/95 md:text-[16px]">
+      <p className="mt-1 text-[15px] text-slate-100/95 md:text-[17px]">
         {dateLine}
       </p>
 

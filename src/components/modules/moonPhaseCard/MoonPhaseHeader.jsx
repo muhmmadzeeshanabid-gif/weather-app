@@ -2,11 +2,13 @@ import React from "react";
 
 const MoonPhaseHeader = ({ weatherIcon, condition }) => {
   return (
-    <div className="flex items-center gap-3">
-      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/14 ring-1 ring-white/20">
-        <img src={weatherIcon} alt={condition} className="h-6 w-6 object-contain" />
+    <div className="flex items-center gap-2.5">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/14 ring-1 ring-white/20">
+        <img src={weatherIcon} alt={condition} className="h-5 w-5 object-contain" />
       </span>
-      <h3 className="font-['Inter'] text-[34px] font-semibold leading-none">Weather Pulse</h3>
+      <h3 className="whitespace-nowrap font-['Inter'] text-[32px] font-semibold leading-none md:text-[34px]">
+        Weather Pulse
+      </h3>
     </div>
   );
 };

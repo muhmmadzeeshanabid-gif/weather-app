@@ -1,6 +1,6 @@
 import { FORECAST_BASE_URL, GEO_BASE_URL } from "./constants";
-import { buildBarometer, buildDays, buildHourlyForecast, mapThemeByWeatherCode } from "./mappers";
-import { formatWeekday, getQueryString, normalizeWind, round } from "./utils";
+import { buildAirConditions, buildBarometer, buildHourlyForecast, mapThemeByWeatherCode } from "./mappers";
+import { getQueryString, round } from "./utils";
 
 async function fetchJson(url, signal) {
   const response = await fetch(url, { signal });
@@ -42,9 +42,10 @@ export async function fetchWeatherByCoordinates(location, signal) {
       "temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,surface_pressure,wind_speed_10m,precipitation_probability",
     hourly:
       "temperature_2m,wind_speed_10m,weather_code,surface_pressure,precipitation_probability",
-    daily: "weather_code,uv_index_max",
+    daily:
+      "weather_code,uv_index_max,apparent_temperature_max,wind_speed_10m_max,precipitation_probability_max",
     timezone: location.timezone || "auto",
-    forecast_days: "3",
+    forecast_days: "7",
   });
 
   const payload = await fetchJson(`${FORECAST_BASE_URL}?${qs}`, signal);
@@ -57,16 +58,21 @@ export async function fetchWeatherByCoordinates(location, signal) {
     throw new Error("Incomplete weather data from API.");
   }
 
-  const theme = mapThemeByWeatherCode(current.weather_code, Boolean(current.is_day));
+  const theme = mapThemeByWeatherCode(
+    current.weather_code,
+    Boolean(current.is_day),
+    current.temperature_2m
+  );
   const forecast = buildHourlyForecast(hourly, timezone);
-  const rainChance = hourly.precipitation_probability?.[0] ?? current.precipitation_probability ?? 0;
-  const uvIndex = daily.uv_index_max?.[0] ?? 0;
+  const air = buildAirConditions(daily, timezone, current);
 
   return {
     id: location.id,
     name: location.name,
     region: location.region || "",
     country: location.country || "",
+    latitude: location.latitude,
+    longitude: location.longitude,
     timezone,
     weather: {
       label: theme.label,
@@ -81,14 +87,7 @@ export async function fetchWeatherByCoordinates(location, signal) {
       },
       barometer: buildBarometer(hourly.surface_pressure || []),
       moon: { activeIndex: round((current.weather_code || 0) % 7) },
-      air: {
-        activeDay: formatWeekday(new Date().toISOString(), timezone),
-        days: buildDays(daily, timezone),
-        realFeel: round(current.apparent_temperature ?? current.temperature_2m),
-        wind: `${normalizeWind(current.wind_speed_10m)} km/hr`,
-        chanceRain: `${round(rainChance)}%`,
-        uvIndex: round(uvIndex),
-      },
+      air,
       forecast,
     },
   };

@@ -10,27 +10,27 @@ const BarometerCard = ({ data }) => {
   const { pathD, points } = usePressureCurve(readings);
 
   return (
-    <div className="h-[286px] w-full rounded-[34px] border border-white/20 bg-sky-500/35 px-6 py-5 backdrop-blur-sm md:h-[300px]">
+    <div className="flex h-[281px] w-full flex-col justify-center rounded-[34px] border border-white/20 bg-sky-500/35 px-6 py-5 backdrop-blur-sm md:h-[295px]">
       <div className="flex items-center gap-2">
         <img
           src="/Group 2726.png"
           alt="barometer"
           className="h-5 w-5 object-contain md:h-6 md:w-6"
         />
-        <h3 className="text-[40px] font-semibold leading-none md:text-[40px]">
+        <h3 className="text-[42px] font-semibold leading-none md:text-[42px]">
           Barometer
         </h3>
       </div>
 
-      <div className="mt-3 flex items-start gap-2.5">
+      <div className="mt-2.5 flex items-start gap-2.5">
         <img
           src="/cardsicon/Group 2727.png"
           alt="pressure"
           className="mt-2 h-8 w-8 object-contain md:h-9 md:w-9"
         />
         <p className="leading-none">
-          <span className="text-[66px] font-medium md:text-[74px]">{pressureValue}</span>
-          <span className="ml-2 align-top text-[42px] md:text-[42px]">{pressureUnit}</span>
+          <span className="text-[68px] font-medium md:text-[76px]">{pressureValue}</span>
+          <span className="ml-2 align-top text-[44px] md:text-[44px]">{pressureUnit}</span>
         </p>
       </div>
 
