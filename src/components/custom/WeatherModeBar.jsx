@@ -41,7 +41,7 @@ const WeatherModeBar = ({ activeLabel }) => {
   };
 
   return (
-    <div className="mt-3 w-full overflow-hidden rounded-[30px] border border-white/12 bg-slate-900/20 px-4 py-3 backdrop-blur-md">
+    <div className="glass-card mt-3 w-full overflow-hidden rounded-[30px] border border-white/12 bg-slate-900/20 px-4 py-3 backdrop-blur-md">
       <div className="flex gap-2 overflow-x-auto justify-center px-2 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {WEATHER_MODES.map((item) => {
           const isActive = isActiveLabel(item);

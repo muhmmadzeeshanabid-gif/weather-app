@@ -2,7 +2,6 @@ import React from "react";
 import Background from "./Background";
 import WeatherHeader from "../modules/weatherHeader/WeatherHeader";
 import WeatherSummary from "./WeatherSummary";
-import WeatherModeBar from "./WeatherModeBar";
 import IndoorCard from "./IndoorCard";
 import BarometerCard from "../modules/barometer/BarometerCard";
 import MoonPhaseCard from "../modules/moonPhaseCard/MoonPhaseCard";
@@ -46,7 +45,6 @@ const WeatherDashboard = () => {
           isLoading={isLoading}
           error={error}
         />
-        <WeatherModeBar activeLabel={weather.label} />
         <div className="mt-4 md:mt-5 md:grid md:grid-cols-[minmax(0,1fr)_300px] md:items-start md:gap-5">
           <div className="grid gap-4 md:grid-cols-3 md:gap-5">
             <IndoorCard data={selectedLocation.cards?.indoor} />
