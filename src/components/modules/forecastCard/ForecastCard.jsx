@@ -20,7 +20,7 @@ const ForecastCard = ({ data }) => {
   }, [temps]);
 
   return (
-    <div className="w-full rounded-[34px] border border-white/20 bg-sky-500/35 px-6 py-5 backdrop-blur-sm md:px-7 md:py-6">
+    <div className="glass-card w-full rounded-[34px] border border-white/16 bg-slate-900/18 px-6 py-5 backdrop-blur-md md:px-7 md:py-6">
       <ForecastCardHeader />
 
       <div className="relative mt-4">

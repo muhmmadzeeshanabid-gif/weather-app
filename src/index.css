@@ -11,22 +11,20 @@ body,
   overflow-y: auto;
 }
 
-.app-zoom-shell {
-  height: 100%;
-  zoom: 0.81;
-}
-
-@supports not (zoom: 0.81) {
-  .app-zoom-shell {
-    width: calc(100% / 0.81);
-    min-height: calc(100dvh / 0.81);
-    transform: scale(0.81);
-    transform-origin: top left;
-  }
-}
-
 .float-input {
   animation: floatIn 2.5s ease-in-out infinite;
+}
+
+.glass-card {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  border-color: rgba(255, 255, 255, 0.22);
+  background-color: rgba(15, 23, 42, 0.22);
 }
 
 @keyframes floatIn {

@@ -37,10 +37,10 @@ const SearchInput = ({
   inputRef,
 }) => {
   return (
-    <div className="overflow-hidden rounded-3xl border border-white/60 bg-sky-900/60 backdrop-blur-sm">
+    <div className="glass-card overflow-hidden rounded-3xl border border-white/16 bg-slate-900/18 backdrop-blur-md">
       <input
         ref={inputRef}
-        className="h-[64px] w-full bg-transparent pl-6 pr-14 text-lg text-white outline-none placeholder:text-slate-100/85 md:text-[16px]"
+        className="h-[64px] w-full bg-transparent pl-6 pr-14 text-lg text-white outline-none placeholder:text-white/90 transition-colors md:text-[16px]"
         type="text"
         placeholder="Search city or country..."
         value={searchText}

@@ -1,8 +1,13 @@
 import React from "react";
+import { Umbrella } from "lucide-react";
 
-const MetricItem = ({ iconSrc, iconAlt, label, value, iconClassName = "" }) => (
+const MetricItem = ({ iconSrc, iconAlt, iconNode, label, value, iconClassName = "" }) => (
   <div className="flex items-start gap-3">
-    <img src={iconSrc} alt={iconAlt} className={`h-5 w-5 object-contain ${iconClassName}`} />
+    {iconNode ? (
+      <span className={`h-5 w-5 ${iconClassName}`}>{iconNode}</span>
+    ) : (
+      <img src={iconSrc} alt={iconAlt} className={`h-5 w-5 object-contain ${iconClassName}`} />
+    )}
     <div>
       <p className="text-[16px] leading-none text-slate-100/95">{label}</p>
       <p className="mt-2 text-[38px] font-medium leading-none">{value}</p>
@@ -22,7 +27,7 @@ const ConditionMetrics = ({ data }) => {
         iconClassName="brightness-0 invert"
       />
       <MetricItem
-        iconSrc="/cardsicon/Vector.png"
+        iconNode={<Umbrella className="h-5 w-5 text-white/90" strokeWidth={1.6} />}
         iconAlt="chance of rain"
         label="Chance of rain"
         value={data.chanceRain}

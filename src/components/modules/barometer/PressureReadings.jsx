@@ -2,7 +2,7 @@ import React from "react";
 
 const PressureReadings = ({ readings }) => {
   return (
-    <div className="mt-1 grid grid-cols-8 gap-1.5">
+    <div className="mt-2 grid grid-cols-8 gap-1.5">
       {readings.map((value, index) => (
         <div key={`${value}-${index}`} className="flex flex-col items-center gap-1">
           <img

@@ -7,13 +7,13 @@ export const WEATHER_THEME = {
   clear: {
     day: {
       label: "Sunny",
-      background: "/backgrounds/bg-weather (3).png",
+      background: "/images/sunny-bg.png",
       headerIcon: "/icons/Group (16).png",
       forecastIcon: "113.png",
     },
     night: {
       label: "Clear Night",
-      background: "/backgrounds/bg-weather (9).png",
+      background: "/images/night-bg.png",
       headerIcon: "/icons/Group (31).png",
       forecastIcon: "117.png",
     },
@@ -21,13 +21,13 @@ export const WEATHER_THEME = {
   partlyCloudy: {
     day: {
       label: "Partly Sunny",
-      background: "/backgrounds/bg-weather (6).png",
+      background: "/images/partly-cloudy-bg.png",
       headerIcon: "/icons/Group (11).png",
       forecastIcon: "icon (1).png",
     },
     night: {
       label: "Partly Cloudy",
-      background: "/backgrounds/f3dd78a9cfd8bfd5cfc94564685ab65074f41c34.jpg",
+      background: "/images/night-bg.png",
       headerIcon: "/icons/Group (11).png",
       forecastIcon: "icon (1).png",
     },
@@ -35,44 +35,68 @@ export const WEATHER_THEME = {
   overcast: {
     day: {
       label: "Cloudy",
-      background: "/backgrounds/a9901d03498672d7b5e7c6122694fa0f0d4b97e3.png",
+      background: "/images/cloudy-bg.png",
       headerIcon: "/icons/Group (22).png",
       forecastIcon: "icon (2).png",
     },
     night: {
       label: "Cloudy",
-      background: "/backgrounds/f3dd78a9cfd8bfd5cfc94564685ab65074f41c34.jpg",
+      background: "/images/cloudy-bg.png",
       headerIcon: "/icons/Group (22).png",
       forecastIcon: "icon (2).png",
     },
   },
   fog: {
     label: "Foggy",
-    background: "/backgrounds/bg-weather (8).png",
+    background: "/images/fog-bg.png",
     headerIcon: "/icons/Group (22).png",
     forecastIcon: "icon (2).png",
   },
+  drizzle: {
+    label: "Drizzle",
+    background: "/images/drizzle-bg.png",
+    headerIcon: "/icons/Group (9).png",
+    forecastIcon: "390.png",
+  },
   rain: {
     label: "Rainy",
-    background: "/backgrounds/bg-weather (5).png",
+    background: "/images/rainy-bg.png",
     headerIcon: "/icons/Group (9).png",
     forecastIcon: "390.png",
   },
   snow: {
     label: "Snow",
-    background: "/backgrounds/bg-weather (10).png",
+    background: "/images/snowy-bg.png",
     headerIcon: "/icons/Group (24).png",
     forecastIcon: "200 386.png",
   },
-  veryHot: {
-    label: "Sunny, Very Hot",
-    background: "/backgrounds/f6edec0e6003f881190041c228cceb7d1fc0df8c.png",
+  hail: {
+    label: "Hail",
+    background: "/images/hail-bg.png",
+    headerIcon: "/icons/Group (24).png",
+    forecastIcon: "200 386.png",
+  },
+  windy: {
+    label: "Windy",
+    background: "/images/windy-bg.png",
+    headerIcon: "/icons/Group (33).png",
+    forecastIcon: "icon (1).png",
+  },
+  sunset: {
+    label: "Sunset",
+    background: "/images/sunset-bg.png",
     headerIcon: "/icons/Group (16).png",
     forecastIcon: "113.png",
   },
-  thunder: {
-    label: "Thunderstorm",
-    background: "/backgrounds/4ef1723d35c75f14d2fba59fbc74da34b967046f (1).jpg",
+  veryHot: {
+    label: "Sunny, Very Hot",
+    background: "/images/sunny-bg.png",
+    headerIcon: "/icons/Group (16).png",
+    forecastIcon: "113.png",
+  },
+  stormy: {
+    label: "Stormy",
+    background: "/images/stormy-bg.png",
     headerIcon: "/icons/Group (7).png",
     forecastIcon: "389.png",
   },

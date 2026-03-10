@@ -10,6 +10,19 @@ async function fetchJson(url, signal) {
   return response.json();
 }
 
+function getLocalHour(timezone) {
+  try {
+    const formatted = new Intl.DateTimeFormat("en-US", {
+      hour: "2-digit",
+      hour12: false,
+      timeZone: timezone,
+    }).format(new Date());
+    return Number(formatted);
+  } catch {
+    return new Date().getHours();
+  }
+}
+
 export async function fetchLocationSuggestions(query, limit = 6, signal) {
   const trimmed = query.trim();
   if (!trimmed) return [];
@@ -61,7 +74,9 @@ export async function fetchWeatherByCoordinates(location, signal) {
   const theme = mapThemeByWeatherCode(
     current.weather_code,
     Boolean(current.is_day),
-    current.temperature_2m
+    current.temperature_2m,
+    current.wind_speed_10m,
+    getLocalHour(timezone)
   );
   const forecast = buildHourlyForecast(hourly, timezone);
   const air = buildAirConditions(daily, timezone, current);

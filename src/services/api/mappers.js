@@ -1,7 +1,13 @@
 import { PRESSURE_HPA_TO_INHG, VERY_HOT_TEMPERATURE_C, WEATHER_THEME } from "./constants";
 import { formatHourLabel, formatWeekday, normalizeWind, round } from "./utils";
 
-export function mapThemeByWeatherCode(weatherCode, isDay = true, temperature = null) {
+export function mapThemeByWeatherCode(
+  weatherCode,
+  isDay = true,
+  temperature = null,
+  windSpeed = null,
+  localHour = null
+) {
   const pickThemeVariant = (theme) => {
     if (!theme?.day) return theme;
     return isDay ? theme.day : theme.night;
@@ -10,12 +16,24 @@ export function mapThemeByWeatherCode(weatherCode, isDay = true, temperature = n
   if (weatherCode === 0 && isDay && Number(temperature) >= VERY_HOT_TEMPERATURE_C) {
     return WEATHER_THEME.veryHot;
   }
-  if ([95, 96, 99].includes(weatherCode)) return WEATHER_THEME.thunder;
+  if ([96, 99].includes(weatherCode)) return WEATHER_THEME.hail;
+  if ([95].includes(weatherCode)) return WEATHER_THEME.stormy;
   if ([71, 73, 75, 77, 85, 86].includes(weatherCode)) return WEATHER_THEME.snow;
-  if ([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82].includes(weatherCode)) {
+  if ([51, 53, 55, 56, 57].includes(weatherCode)) return WEATHER_THEME.drizzle;
+  if ([61, 63, 65, 66, 67, 80, 81, 82].includes(weatherCode)) {
     return WEATHER_THEME.rain;
   }
   if ([45, 48].includes(weatherCode)) return WEATHER_THEME.fog;
+  if (Number(windSpeed) >= 35) return WEATHER_THEME.windy;
+  if (
+    isDay &&
+    localHour != null &&
+    localHour >= 17 &&
+    localHour <= 19 &&
+    [0, 1, 2].includes(weatherCode)
+  ) {
+    return WEATHER_THEME.sunset;
+  }
   if (weatherCode === 3) return pickThemeVariant(WEATHER_THEME.overcast);
   if ([1, 2].includes(weatherCode)) return pickThemeVariant(WEATHER_THEME.partlyCloudy);
   if (weatherCode === 0) return isDay ? WEATHER_THEME.clear.day : WEATHER_THEME.clear.night;

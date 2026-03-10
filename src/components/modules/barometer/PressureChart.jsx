@@ -2,7 +2,7 @@ import React from "react";
 
 const PressureChart = ({ pathD, points }) => {
   return (
-    <div className="mt-2">
+    <div className="mt-3">
       <svg viewBox="0 0 300 62" className="h-[54px] w-full" preserveAspectRatio="none">
         <path
           d={pathD}
